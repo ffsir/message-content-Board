@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('api.php');
 if($_SESSION['login']){
     header("Refresh:0;URL='index.php'");
 }else{
@@ -9,7 +10,7 @@ if($_SESSION['login']){
 
 $username = $_POST['username'];
 $passwd = $_POST['passwd'];
-$db = mysqli_connect('localhost','testx','testx','testx');
+
 $pdpasswd = mysqli_fetch_assoc(mysqli_query($db,"select * from `user` where username = '$username'"));
 
 

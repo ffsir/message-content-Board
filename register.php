@@ -3,7 +3,7 @@ $username = $_POST['username'];
 $passwd = $_POST['passwd'];
 $repasswd = $_POST['repasswd'];
 
-$db = mysqli_connect('localhost','testx','testx','testx');
+require_once('api.php');
 $rename = mysqli_fetch_assoc(mysqli_query($db,"SELECT * FROM `user` WHERE username = '$username'"));
 
 

@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require_once('api.php');
 if($_SESSION['login'])
 {
  
@@ -55,7 +56,7 @@ if($_SESSION['login'])
     <br />
 <h1>欢迎回来：<?php echo $_SESSION['login'] ?>      <a href="logout.php">退出登录</a></h1>
 <?php
- $db = mysqli_connect('localhost','testx','testx','testx'); //地址，数据库用户名，密码，数据库名称
+ 
     $nr = mysqli_query($db,"SELECT * from `content`");
     while($xh = mysqli_fetch_object($nr)){
         echo "   
