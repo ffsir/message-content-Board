@@ -1,11 +1,11 @@
 <?php
 header("Content-type:text/html;charset=utf-8");
-$lockfile = "../api.php";
+$lockfile = "../config.php";
 
 if(file_exists($lockfile))
 {
     exit("如果想重复安装，请删除api文件。");
-   header("Refresh:0;url:'./index.php'"); 
+   header("Refresh:1;url='index.php'"); 
 }else{
 
 
@@ -61,31 +61,13 @@ if ($conn->query($content) === TRUE) {
 		/*	$admin_user = "'.$adminuser.'";
 			$admin_pwd = "'.$adminpwd.'"; */
 			
-			session_start();
+		
         $db = mysqli_connect("'. $servername .'","'. $username .'","'. $password .'","'. $dbname .'");
-            $time = date("Y-m-d H:i:s");
-    
-   $xc = $_POST[\'xc\'];
-   $username = $_SESSION[\'login\'];
-
- 
-    //GET
-  $return = file_get_contents("https://api.xsot.cn/mgword/?content=$xc");
-  $arr = json_decode($return,true);
-  
-  
- if($arr[\'count\'] >= 1){
-   echo 1;
-    
- }else{
-        mysqli_query($db,"INSERT INTO `content` (`content`,`time`,`username`) VALUES (\'$xc\',\'$time\',\'$username\')");
-  
-    echo 200;
- }
+           
 			
 			?>';
 			//生成json文件
-			file_put_contents('../api.php', $mysql_data);
+			file_put_contents('../config.php', $mysql_data);
 			//输出结果
 			echo "<div style='width:300px;margin:50px auto 5px;'><img src='https://ae01.alicdn.com/kf/H25c45c759fcf43ae9ac3e98e65305a11J.jpg' width='300'/></div>";
 			echo "<h2 style='text-align:center;margin-top:50px;'>安装成功！！</h2>";

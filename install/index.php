@@ -1,5 +1,5 @@
 <?php
-$lockfile = "../api.php";
+$lockfile = "../config.php";
 
 if(file_exists($lockfile))
 {

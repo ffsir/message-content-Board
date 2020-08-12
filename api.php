@@ -3,7 +3,18 @@
 			$admin_pwd = ""; */
 			
 			session_start();
-        $db = mysqli_connect("localhost","testx","testx","testx");
+			$lockfile = "config.php";
+
+if(!file_exists($lockfile))
+{
+   header("Refresh:0;url='/install'"); 
+   
+}else{
+			require_once('config.php');
+			$lockfile = "config.php";
+
+
+
             $time = date("Y-m-d H:i:s");
     
    $xc = $_POST['xc'];
@@ -14,7 +25,7 @@
   $return = file_get_contents("https://api.xsot.cn/mgword/?content=$xc");
   $arr = json_decode($return,true);
   
-  
+ if(!empty($xc)){ 
  if($arr['count'] >= 1){
    echo 1;
     
@@ -23,5 +34,10 @@
   
     echo 200;
  }
-			
+}else{
+    header("Refresh:0;url='index.php'"); 
+    exit();
+    
+}	
+}
 			?>

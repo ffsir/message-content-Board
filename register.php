@@ -1,10 +1,19 @@
 <?php
+$lockfile = "config.php";
+
+if(!file_exists($lockfile))
+{
+  
+   header("Refresh:0;url='./install'"); 
+}else{
+    
 $username = $_POST['username'];
 $passwd = $_POST['passwd'];
 $repasswd = $_POST['repasswd'];
 
-require_once('api.php');
+require_once('config.php');
 $rename = mysqli_fetch_assoc(mysqli_query($db,"SELECT * FROM `user` WHERE username = '$username'"));
+
 
 
 if(isset($_POST['submit'])){
@@ -96,3 +105,5 @@ if(isset($_POST['submit'])){
 
 </body>
 </html>
+<?php
+}

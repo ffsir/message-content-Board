@@ -1,6 +1,14 @@
 <?php
 session_start();
-require_once('api.php');
+$lockfile = "config.php";
+
+if(!file_exists($lockfile))
+{
+  
+   header("Refresh:0;url='./install'"); 
+}else{
+require_once('config.php');
+
 if($_SESSION['login']){
     header("Refresh:0;URL='index.php'");
 }else{
@@ -97,3 +105,5 @@ if(isset($_POST['submit'])){
 <?php
 }
 ?>
+<?php
+}
